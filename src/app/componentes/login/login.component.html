@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Bons Fluidos" />
+    </div>
+    <div class="form-container">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <label for="username">Usuário</label>
+
+        <input name = "username"  type="text" placeholder="Usuário"
+        [(ngModel)]="user.username" required/>
+  
+        <label for="password">Senha</label>
+        <input name = "password" type="password"  placeholder="Senha"
+        [(ngModel)]="user.password"  required/>
+  
+        <button type="submit" [disabled] = "loginForm.invalid" [class.empty]="!user.username || !user.password">Login</button>
+        
+      </form>
+    </div>
+  </div>
+  
