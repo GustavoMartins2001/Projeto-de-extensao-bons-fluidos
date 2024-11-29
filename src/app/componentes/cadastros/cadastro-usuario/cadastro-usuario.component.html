@@ -1,1 +1,41 @@
-<h2>cadastro-usuario works!</h2>
+<div class="login-container">
+    <div class="form-container">
+      <form #cadastroForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <label for="username">Usuário</label>
+        <input name = "username"  type="text" placeholder="Usuário"
+        required/>
+        
+        <label for="password">Nome</label>
+        <input placeholder="Nome Completo"
+          required/>
+
+          <label for="password">Telefone</label>
+        <input  placeholder="Telefone"
+          required/>
+
+          <label for="password">Senha</label>
+          <input name = "password" type="password" placeholder="Senha"
+            required/>
+
+        <label for="password">Repetir Senha</label>
+        <input name = "repeatPassword" type="password" placeholder="Repetir Senha"
+          required/>
+
+          <label>
+            <input type="checkbox" /> Será apoiador?
+          </label>
+
+          <div class="button-container">
+            <button class="cancel-button">Cancelar</button>
+            <button type="submit" [disabled] = "cadastroForm.invalid">Salvar</button>
+            </div>
+          
+      </form>
+      
+    </div>
+
+    
+
+  </div>
+  
