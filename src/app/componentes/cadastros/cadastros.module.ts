@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CadastrosComponent } from './cadastros.component';
 import { CadastroEventoComponent } from './cadastro-evento/cadastro-evento.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {
@@ -31,6 +32,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        ReactiveFormsModule
     ],
     exports: [RouterModule],
 })
