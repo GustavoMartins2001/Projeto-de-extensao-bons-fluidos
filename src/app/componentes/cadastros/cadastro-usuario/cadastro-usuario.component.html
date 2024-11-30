@@ -1,26 +1,22 @@
 <div class="login-container">
     <div class="form-container">
-      <form #cadastroForm="ngForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
 
-        <label for="username">Usuário</label>
-        <input name = "username"  type="text" placeholder="Usuário"
+        <label for="username"><strong>Usuário</strong></label>
+        <input name = "username"  type="text" placeholder="Usuário" formControlName="username"
         required/>
         
-        <label for="password">Nome</label>
-        <input placeholder="Nome Completo"
+        <label for="name"><strong>Nome</strong></label>
+        <input placeholder="Nome Completo" formControlName="name"
           required/>
 
-          <label for="password">Telefone</label>
-        <input  placeholder="Telefone"
+          <label for="phone"><strong>Telefone</strong></label>
+        <input placeholder="Telefone" formControlName="phone"
           required/>
 
-          <label for="password">Senha</label>
-          <input name = "password" type="password" placeholder="Senha"
+          <label for="password"><strong>Senha</strong></label>
+          <input name = "password" type="password" placeholder="Senha" formControlName="password"
             required/>
-
-        <label for="password">Repetir Senha</label>
-        <input name = "repeatPassword" type="password" placeholder="Repetir Senha"
-          required/>
 
           <label>
             <input type="checkbox" /> Será apoiador?
@@ -28,7 +24,7 @@
 
           <div class="button-container">
             <button class="cancel-button">Cancelar</button>
-            <button type="submit" [disabled] = "cadastroForm.invalid">Salvar</button>
+            <button type="submit" [disabled] = "formCadastro.invalid" [class.empty]="formCadastro.invalid">Salvar</button>
             </div>
           
       </form>

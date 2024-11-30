@@ -1,35 +1,50 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro-usuario',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './cadastro-usuario.component.html',
   styleUrl: './cadastro-usuario.component.css'
 })
-export class CadastroUsuarioComponent {
-  constructor(private router: Router) {}
+export class CadastroUsuarioComponent implements OnInit {
 
-  //verifica os inputs para mudar a cor do botao, pode ser usado para fazer validação no backend
-  user = {
-    username: '',
-    password: '',
-  };
+  formCadastro!: FormGroup;
+
+  constructor(private router: Router,
+              private fb: FormBuilder,
+  ) { }
+
+  ngOnInit() {
+    this.validation();
+  }
+
+  validation() {
+    this.formCadastro = this.fb.group({
+      username:       ['', [Validators.required]],
+      name:           ['', [Validators.required]],
+      phone:          ['', [Validators.required]],
+      password:       ['' , [Validators.required]],
+      apoiador:       [''],
+    });
+  }
 
   onSubmit() {
-    if (this.user.username && this.user.password) {
-      console.log('Form submitted', this.user);
+    console.log(this.formCadastro);
+    this.router.navigateByUrl("listagem/usuario")
+    // if (this.user.username && this.user.password) {
+    //   console.log('Form submitted', this.user);
 
-      //logica de validação
-      //
-      //
+    //   //logica de validação
+    //   //
+    //   //
 
-      this.router.navigate(['/listagem/evento']);
+    //   this.router.navigate(['/listagem/evento']);
       
-    } else {
-      console.error('Form is invalid');
-    }
+    // } else {
+    //   console.error('Form is invalid');
+    // }
   }
 }
