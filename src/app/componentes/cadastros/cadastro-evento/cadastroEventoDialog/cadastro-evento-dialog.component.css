@@ -1,0 +1,99 @@
+.dialog-container {
+    max-width: 800px;
+    /* border-radius: 1px !important; */
+  }
+  
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #89C39D;
+    padding: 5px 10px 5px 10px;
+    /* margin-bottom: 20px; */
+  }
+  .dialog-body{
+    padding: 20px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    margin-bottom: 5%;
+  }
+  
+  input{
+    border: 2px solid #E5E5E5;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .user-lists {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+  
+  .user-list {
+    padding-left: 3%;
+    width: 45%;
+    border: 2px solid #E5E5E5;
+  }
+  
+  .user-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+  }
+  
+  .dialog-footer {
+    text-align: right;
+    margin: 20px
+  }
+
+  .save-button{
+    background-color: #4caf50; 
+    color: #ffffff;
+    padding: 3% 7%;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .wrapper{
+    max-height: 200px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .move-button{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    justify-self: flex-start;
+  }
+
+  .close-button{
+    color: #FEFEFE;
+    border: none;
+    background: none;
+    width: 10%;
+    height: 10%;
+  }
+
+  .selected{
+    background-color: rgba(113, 185, 243, 0.685);
+  }
+
+  h2{
+    color: #FEFEFE;
+  }
+
+  
