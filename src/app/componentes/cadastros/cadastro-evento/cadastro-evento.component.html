@@ -1,1 +1,25 @@
-<p>cadastro-evento works!</p>
+<div class="container">
+    <div class="form-container">
+      <form [formGroup]="formCadastro">
+
+        <label for="name"><strong>Nome</strong></label>
+        <input placeholder="Nome do evento" formControlName="nome"/>
+
+          <label for="phone"><strong>Data</strong></label>
+        <input placeholder="Data"  formControlName="data"/>
+        
+          <label for="password"><strong>Descrição</strong></label>
+          <input placeholder="Descreva o evento..." formControlName="descricao"/>
+
+          <button type="menu" (click)="openDialog()">Adicionar Participantes</button>
+      </form>
+      <div class="button-container">
+        <button class="cancel-button">Cancelar</button>
+        <button type="submit" (click)="submit()" [disabled] = "formCadastro.invalid" [class.empty]="formCadastro.invalid">Salvar</button>
+        </div>
+    </div>
+
+    
+
+  </div>
+  
