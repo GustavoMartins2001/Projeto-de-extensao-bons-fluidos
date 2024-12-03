@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { ENVIRONMENTS } from '../constants/environments';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'root', deps: [HttpClient] })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   private $token: string = '';
 

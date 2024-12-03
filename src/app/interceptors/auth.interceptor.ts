@@ -12,9 +12,9 @@ import { ENVIRONMENTS } from '../constants/environments';
 
 const AUTH_HEADER = 'Authorization';
 
-@Injectable()
+@Injectable({ providedIn: 'root', deps: [AuthService] })
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   intercept(
     req: HttpRequest<any>,
