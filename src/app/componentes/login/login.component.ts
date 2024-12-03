@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -39,16 +40,19 @@ export class LoginComponent implements OnInit {
   async onSubmit(): Promise<void> {
     this.form?.markAllAsTouched();
 
-    if (this.form?.invalid) {
-      this.loginError = true;
-    }
-
     try {
       await this.authService.login(this.form?.getRawValue());
-    } catch (_) {
-      this.loginError = true;
-    } finally {
       this.router.navigate(['/listagem/evento']);
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        const err = error as HttpErrorResponse;
+        if (err.status === 401) {
+          this.loginError = true;
+          return;
+        }
+      } else {
+        alert('Falha ao efetuar login!');
+      }
     }
   }
 }
