@@ -5,6 +5,7 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
 import { CadastrosComponent } from './cadastros.component';
 import { CadastroEventoComponent } from './cadastro-evento/cadastro-evento.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [
     {
@@ -32,7 +33,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule
     ],
     exports: [RouterModule],
 })

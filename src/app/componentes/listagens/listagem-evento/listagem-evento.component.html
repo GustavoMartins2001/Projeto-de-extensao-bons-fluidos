@@ -1,1 +1,26 @@
-<p>listagem-evento works!</p>
+<div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <!-- <img src="assets/logo.png" alt="Logo Bons Fluidos" /> -->
+        <h1>Bons Fluidos</h1>
+      </div>
+      <nav class="menu">
+        <a class="menu-item active">Eventos</a>
+        <a class="menu-item">Novo evento</a>
+        <a class="menu-item">Novo usuário</a>
+      </nav>
+    </aside>
+  
+    <main class="content">
+      <div class="event-list">
+        <div class="event-item" *ngFor="let event of eventos">
+          <input type="checkbox" />
+          <span class="event-name">{{ event.nome }}</span>
+          <span class="event-date">Data: {{ event.data }}</span>
+          <button class="btn edit" (click)="editEvent(event.id)">✏️</button>
+          <button class="btn delete" (click)="deleteEvent(event.id)">🗑️</button>
+        </div>
+      </div>
+    </main>
+  </div>
+  

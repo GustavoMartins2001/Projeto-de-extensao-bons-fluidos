@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #d6f0d9;
+  }
+  
+  .sidebar {
+    width: 20%;
+    background-color: #FFFFFF;
+    padding: 20px;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    padding: 10px;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #000;
+    background-color: #d6f0d9;
+    border-radius: 5px;
+  }
+  
+  .menu-item.active {
+    background-color: #8ec39b;
+    color: #fff;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .event-list {
+    background-color: #d6f0d9;
+    /* padding: %; */
+    margin: 3%;
+    border-radius: 5px;
+    min-height: 70%;
+  }
+  
+  .event-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .event-name, .event-date {
+    margin-left: 10px;
+  }
+  
+  .btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .btn.edit {
+    color: #007bff;
+  }
+  
+  .btn.delete {
+    color: #dc3545;
+  }
+  

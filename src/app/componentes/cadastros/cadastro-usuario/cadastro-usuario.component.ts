@@ -23,10 +23,10 @@ export class CadastroUsuarioComponent implements OnInit {
 
   validation() {
     this.formCadastro = this.fb.group({
-      username:       ['', [Validators.required]],
-      name:           ['', [Validators.required]],
-      phone:          ['', [Validators.required]],
-      password:       ['' , [Validators.required]],
+      email:       ['', [Validators.required]],
+      nome:           ['', [Validators.required]],
+      telefone:          ['', [Validators.required]],
+      senha:       ['' , [Validators.required]],
       apoiador:       [''],
     });
   }
