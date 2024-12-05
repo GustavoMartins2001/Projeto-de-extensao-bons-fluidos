@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onRegister(): void {
+    this.router.navigate(['/cadastros/usuario']);
+  }
+
   async onSubmit(): Promise<void> {
     this.form?.markAllAsTouched();
 
