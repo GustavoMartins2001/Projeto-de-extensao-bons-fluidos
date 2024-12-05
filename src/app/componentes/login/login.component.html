@@ -3,13 +3,13 @@
     <img src="assets/logo.png" alt="Bons Fluidos" />
   </div>
   <div class="form-container" *ngIf="form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label for="username">Usuário</label>
+    <form [formGroup]="form">
+      <label for="email">E-mail</label>
       <input
-        name="username"
+        name="email"
         type="text"
-        placeholder="Usuário"
-        formControlName="username"
+        placeholder="E-mail"
+        formControlName="email"
         required
       />
 
@@ -26,13 +26,7 @@
         Usuário e/ou senha incorretos!
       </p>
 
-      <button
-        type="submit"
-        [disabled]="form.invalid"
-        [class.empty]="!form.value.username || !form.value.username"
-      >
-        Login
-      </button>
+      <button type="submit" (click)="onSubmit()">Login</button>
 
       <label
         style="
