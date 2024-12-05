@@ -13,59 +13,71 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   styleUrls: ['./cadastro-evento-dialog.component.css'],
 })
 export class CadastroEventoDialogComponent {
+  constructor(public dialogRef: MatDialogRef<CadastroEventoDialogComponent>) {}
 
-  constructor(public dialogRef: MatDialogRef<CadastroEventoDialogComponent>) { }
-
-  usersOutside = ['Nome Sobrenome', 'Usuário 2', 'Usuário 3', 'Usuário 4', 'Usuário 5', 'Usuário 6','Usuário 7','Usuário 8','Usuário 9','Usuário 10','Usuário 11','Usuário 12','Usuário 13'];
+  usersOutside = [
+    'Nome Sobrenome',
+    'Usuário 2',
+    'Usuário 3',
+    'Usuário 4',
+    'Usuário 5',
+    'Usuário 6',
+    'Usuário 7',
+    'Usuário 8',
+    'Usuário 9',
+    'Usuário 10',
+    'Usuário 11',
+    'Usuário 12',
+    'Usuário 13',
+  ];
   selectedUsersOutside: string[] = [];
   usersInside: string[] = [];
   selectedUsersInside: string[] = [];
 
-
-  closeDialog(){
-    this.dialogRef.close()
+  closeDialog() {
+    this.dialogRef.close();
   }
 
-  toggleSelectedClass(event:any){
-    event.target.classList.toggle("selected");
+  toggleSelectedClass(event: any) {
+    event.target.classList.toggle('selected');
   }
 
-  selectOutsideEvent(user:any, event:any){
-    if(!this.selectedUsersOutside.includes(user)){
-      this.selectedUsersOutside.push(user)
+  selectOutsideEvent(user: any, event: any) {
+    if (!this.selectedUsersOutside.includes(user)) {
+      this.selectedUsersOutside.push(user);
       this.toggleSelectedClass(event);
-    }
-    else {
+    } else {
       const index = this.selectedUsersOutside.indexOf(user);
-      this.selectedUsersOutside.splice(index, 1)
+      this.selectedUsersOutside.splice(index, 1);
       this.toggleSelectedClass(event);
     }
   }
 
-  selectInsideEvent(user:any, event:any){
-    if(!this.selectedUsersInside.includes(user)){
-      this.selectedUsersInside.push(user)
+  selectInsideEvent(user: any, event: any) {
+    if (!this.selectedUsersInside.includes(user)) {
+      this.selectedUsersInside.push(user);
       this.toggleSelectedClass(event);
-    }
-    else {
+    } else {
       const index = this.selectedUsersInside.indexOf(user);
-      this.selectedUsersInside.splice(index, 1)
+      this.selectedUsersInside.splice(index, 1);
       this.toggleSelectedClass(event);
     }
-    
   }
 
-  moveEvents(){
-
+  moveEvents() {
     //troca os usuarios selecionados, eventos fora vao pra dentro e vice-versa
-    this.usersOutside = this.usersOutside.filter(u =>  !this.selectedUsersOutside.includes(u));
+    this.usersOutside = this.usersOutside.filter(
+      (u) => !this.selectedUsersOutside.includes(u)
+    );
     this.usersInside.push(...this.selectedUsersOutside);
 
-    this.usersInside = this.usersInside.filter(u =>  !this.selectedUsersInside.includes(u));
+    this.usersInside = this.usersInside.filter(
+      (u) => !this.selectedUsersInside.includes(u)
+    );
     this.usersOutside.push(...this.selectedUsersInside);
 
     //limpa a seleção de usuarios
     this.selectedUsersOutside = [];
-    this.selectedUsersInside = []; 
+    this.selectedUsersInside = [];
   }
 }

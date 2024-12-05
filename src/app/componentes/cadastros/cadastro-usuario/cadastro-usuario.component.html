@@ -1,32 +1,45 @@
 <div class="container">
-    <div class="form-container">
-      <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
+  <div class="form-container">
+    <form [formGroup]="formCadastro">
+      <label for="email"><strong>E-mail</strong></label>
+      <input
+        name="email"
+        type="text"
+        placeholder="E-mail"
+        formControlName="email"
+        required
+      />
 
-        <label for="username"><strong>Usuário</strong></label>
-        <input name = "username"  type="text" placeholder="Usuário" formControlName="email"
-        required/>
-        
-        <label for="name"><strong>Nome</strong></label>
-        <input placeholder="Nome Completo" formControlName="nome"
-          required/>
+      <label for="name"><strong>Nome</strong></label>
+      <input placeholder="Nome Completo" formControlName="nome" required />
 
-          <label for="phone"><strong>Telefone</strong></label>
-        <input placeholder="Telefone" formControlName="telefone"
-          required/>
+      <label for="phone"><strong>Telefone</strong></label>
+      <input
+        placeholder="Telefone"
+        mask="(00)00000-0000"
+        formControlName="telefone"
+        required
+      />
 
-          <label for="password"><strong>Senha</strong></label>
-          <input name = "password" type="password" placeholder="Senha" formControlName="senha"
-            required/>
+      <label for="password"><strong>Senha</strong></label>
+      <input
+        name="password"
+        type="password"
+        placeholder="Senha"
+        formControlName="senha"
+        required
+      />
 
-          <label>
-            <input type="checkbox" /> Será apoiador?
-          </label>
+      <label> <input type="checkbox" /> Será apoiador? </label>
 
-          <div class="button-container">
-            <button class="cancel-button">Cancelar</button>
-            <button type="submit" [disabled] = "formCadastro.invalid" [class.empty]="formCadastro.invalid">Salvar</button>
-            </div>
-      </form>
-    </div>
+      <div class="button-container">
+        <button class="cancel-button" (click)="onCancel()">Cancelar</button>
+        <button type="submit" (click)="onSubmit()">
+          <!-- [disabled]="formCadastro.invalid"
+          [class.empty]="formCadastro.invalid" -->
+          Salvar
+        </button>
+      </div>
+    </form>
   </div>
-  
+</div>

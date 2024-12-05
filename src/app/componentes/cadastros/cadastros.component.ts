@@ -8,10 +8,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
 })
 export class CadastrosComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

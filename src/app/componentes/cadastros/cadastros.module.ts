@@ -8,34 +8,34 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: CadastrosComponent,
+    children: [
+      {
         path: '',
-        component: CadastrosComponent,
-        children: [
-            {
-                path: '',
-                redirectTo: 'usuario',
-                pathMatch: 'full', // Redirect to 'usuario' if no child route is provided
-            },
-            {
-                path: 'usuario',
-                component: CadastroUsuarioComponent,
-            },
-            {
-                path: 'evento',
-                component: CadastroEventoComponent,
-            },
-        ],
-    },
+        redirectTo: 'usuario',
+        pathMatch: 'full',
+      },
+      {
+        path: 'usuario',
+        component: CadastroUsuarioComponent,
+      },
+      {
+        path: 'evento',
+        component: CadastroEventoComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        ReactiveFormsModule,
-        MatFormFieldModule
-    ],
-    exports: [RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    MatFormFieldModule,
+  ],
+  exports: [RouterModule],
 })
 export class CadastrosModule {}
