@@ -1,24 +1,40 @@
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <div class="container">
     <aside class="sidebar">
-      <div class="logo">
-        <!-- <img src="assets/logo.png" alt="Logo Bons Fluidos" /> -->
-        <h1>Bons Fluidos</h1>
+      <div>
+        <img class="logo" src="assets/logo.png" alt="Logo Bons Fluidos" />
       </div>
-      <nav class="menu">
-        <a class="menu-item active">Eventos</a>
-        <a class="menu-item">Novo evento</a>
-        <a class="menu-item">Novo usuário</a>
+      <nav class="menu" #menu>
+        <a name="listagemDiv" class="menu-item active" (click)="loadList($event)">Eventos </a>
+
+        <a name="listagemDiv" class="menu-item" (click)="loadList($event)">Usuários </a>
+
+        <div class="menu-item" (click)="navigateTo('/cadastros/evento')">
+          <a>Novo evento </a>
+          <img src="assets/plusIconGreen.png" alt="Logo Bons Fluidos" class="plus-icon" />
+        </div>
+
+        <div #usuarioList class="menu-item" (click)="navigateTo('/cadastros/usuario')">
+          <a >Novo usuário </a>
+          <img src="assets/plusIconGreen.png" alt="Logo Bons Fluidos" class="plus-icon" />
+        </div>
       </nav>
     </aside>
   
     <main class="content">
       <div class="event-list">
         <div class="event-item" *ngFor="let event of eventos">
-          <input type="checkbox" />
-          <span class="event-name">{{ event.nome }}</span>
-          <span class="event-date">Data: {{ event.data }}</span>
-          <button class="btn edit" (click)="editEvent(event.id)">✏️</button>
-          <button class="btn delete" (click)="deleteEvent(event.id)">🗑️</button>
+          <div>
+              <span class="event-name">{{ event.nome }}</span>
+          </div>
+          <div>
+            <span class="event-date">Data: {{ event.data }}</span>
+          </div>
+          <div>
+            <button class="btn edit" (click)="editEvent(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
+            <button class="btn delete" (click)="deleteEvent(event.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
+          </div>
+          
         </div>
       </div>
     </main>
