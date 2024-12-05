@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: #e7f3eb;
+    font-family: 'Noto Sans';
+    font-size: 12px;
+
+  }
+  
+  .sidebar {
+    width: 25%;
+    background-color: #FFFFFF;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding:  8px;
+    padding-left: 10%;
+    margin: 15px 0;
+    text-decoration: none;
+    color: #89C39D;
+    border: 1px solid #00000014;
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .menu-item.active {
+    background-color: #8ec39b;
+    color: #fff;
+  }
+
+  .menu-item:hover{
+    background-color: #8ec39b;
+    color: #fff;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .event-list {
+    background-color: #d4e9db;
+    margin: 3%;
+    border-radius: 5px;
+    min-height: 90%;
+    padding-top: 2%;
+    overflow-y: auto;
+  }
+  
+  .event-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+    border-bottom: 1px solid #00000014;
+  }
+
+  .event-item > div{
+    display: flex;
+    align-items: center;
+  }
+  
+  .event-name, .event-date {
+    margin-left: 10px;
+  }
+
+  .plus-icon{
+    margin-top: 2px;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .btn.edit {
+    color: #007bff;
+  }
+  
+  .btn.delete {
+    color: #dc3545;
+  }
+  

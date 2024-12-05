@@ -20,9 +20,6 @@
           <ul class="wrapper">
             <li *ngFor="let user of usersOutside" (click)="selectOutsideEvent(user, $event)">
               {{ user }}
-              <!-- <button mat-icon-button >
-                <mat-icon>add</mat-icon>
-              </button> -->
             </li>
           </ul>
         </div>
@@ -34,27 +31,9 @@
           <ul class="wrapper">
             <li *ngFor="let user of usersInside" (click)="selectInsideEvent(user, $event)">
               {{ user }}
-              <!-- <button mat-icon-button >
-                <mat-icon>remove</mat-icon>
-              </button> -->
             </li>
           </ul>
-
         </div>
-
-        <!-- <div class="user-list">
-          <h3>Dentro do evento</h3>
-          <ul>
-            <li *ngFor="let user of usersInside">
-              {{ user }}
-              <button mat-icon-button (click)="moveFromEvent(user)">
-                <mat-icon>remove</mat-icon>
-              </button>
-            </li>
-          </ul>
-
-        </div> -->
-
       </div>
     </div>
     <div class="dialog-footer">
