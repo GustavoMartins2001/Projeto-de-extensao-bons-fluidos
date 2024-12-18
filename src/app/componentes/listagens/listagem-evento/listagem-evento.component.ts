@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { EventService } from '../../../services/event.service';
 
 @Component({
   selector: 'app-listagem-evento',
@@ -8,38 +10,25 @@ import { Router } from '@angular/router';
   templateUrl: './listagem-evento.component.html',
   styleUrl: './listagem-evento.component.css'
 })
-export class ListagemEventoComponent {
+export class ListagemEventoComponent implements OnInit{
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService, private eventService: EventService) {}
 
-  eventos = [
-    { id: 1, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 2, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 3, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-    { id: 4, nome: 'Nome do evento', data: '15/04/2020' },
-  ];
+  list:any = []
+  showEvents = true;
+  showUsers = false;
 
-  usuarios = [
-    //lista de usuarios vinda do backend
-  ]
-
-  editEvent(id: number) {
-    console.log('Editar evento:', id);
+  ngOnInit() {
+    this.listEvents();
   }
 
-  deleteEvent(id: number) {
-    this.eventos = this.eventos.filter(event => event.id !== id);
-    console.log('Evento excluído:', id);
+  edit(id: number) {
+    console.log('Editar item:', id);
+  }
+
+  delete(id: number) {
+    this.list = this.list.filter((item: { id: number; }) => item.id !== id);
+    console.log('Item excluído:', id);
   }
 
   toggleListClass(target:any){
@@ -53,10 +42,30 @@ export class ListagemEventoComponent {
     
   }
 
-  loadList(event:any){
+  async listUsers(){
+    this.list = await this.userService.list();
+      this.showUsers = true;
+      this.showEvents = false;
+  }
+
+  async listEvents(){
+    this.list = await this.eventService.list();
+    this.showUsers = false;
+    this.showEvents = true;
+  }
+
+  async loadList(event:any){
     this.toggleListClass(event.target);
 
-    //carregar lista a depender do botao clicado, com a listagem de eventos carregada inicialmente
+    if(event.target.id == "users"){
+      this.listUsers();
+    }
+
+    else if(event.target.id == "events"){
+      this.listEvents();
+    }
+    console.log(this.list)
+
   }
 
   navigateTo(url:string){

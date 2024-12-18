@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastroEventoDialogComponent } from './cadastroEventoDialog/cadastro-evento-dialog.component';
+import { EventService } from '../../../services/event.service';
 
 @Component({
   selector: 'app-cadastro-evento',
@@ -23,7 +24,8 @@ export class CadastroEventoComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private eventService: EventService
   ) {}
 
   ngOnInit() {
@@ -34,9 +36,8 @@ export class CadastroEventoComponent implements OnInit {
 
   validation() {
     this.formCadastro = this.fb.group({
-      nome: ['', [Validators.required]],
       data: ['', [Validators.required]],
-      descricao: [''],
+      descricao: ['', [Validators.required]],
       participantes: [''],
     });
   }
@@ -47,20 +48,27 @@ export class CadastroEventoComponent implements OnInit {
     });
   }
 
-  submit() {
-    console.log(this.formCadastro);
-    this.router.navigateByUrl('listagem/evento');
-    // if (this.user.username && this.user.password) {
-    //   console.log('Form submitted', this.user);
+  async onSubmit(): Promise<void> {
+    console.log(this.formCadastro.getRawValue());
 
-    //   //logica de validação
-    //   //
-    //   //
+    if (this.formCadastro.invalid) {
+      this.formCadastro.markAllAsTouched();
+      alert('É necessário preencher todos os campos para prosseguir!');
+      return;
+    }
 
-    //   this.router.navigate(['/listagem/evento']);
+    try {
+      await this.eventService.register({
+        description: this.formCadastro.get('descricao')?.value,
+        date: this.formCadastro.get('data')?.value,
+        user: this.formCadastro.get('participantes')?.value,
+      });
 
-    // } else {
-    //   console.error('Form is invalid');
-    // }
+      this.router.navigate(['/listagem/evento']);
+
+      alert('Usuário cadastrado com sucesso!');
+    } catch (error) {
+      alert('Falha ao efetuar cadastro!');
+    }
   }
 }

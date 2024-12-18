@@ -12,6 +12,10 @@ import { ENVIRONMENTS } from '../constants/environments';
 
 const AUTH_HEADER = 'Authorization';
 
+type JsonToken = {
+  token: string;
+}
+
 @Injectable({ providedIn: 'root', deps: [AuthService] })
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private readonly authService: AuthService) {}
@@ -34,10 +38,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (shouldAddAuthorizantion) {
       if (this.authService.token) {
+        //por algum motivo o token estava chegando com a palavra "token"(EX:"token [TOKEN_REAL]") na frente,
+        //o que fazia o auth falhar no backend. isso resolve o problema 
+        const teste:JsonToken = this.authService.token as unknown as JsonToken
+
         req = req.clone({
           headers: req.headers.set(
             AUTH_HEADER,
-            `Bearer ${this.authService.token}`
+            `Bearer ${teste.token}`
           ),
         });
       }
