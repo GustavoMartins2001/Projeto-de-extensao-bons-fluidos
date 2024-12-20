@@ -19,6 +19,7 @@ export class ListagemEventoComponent implements OnInit{
   showUsers = false;
 
   ngOnInit() {
+    console.log("123123")
     this.listEvents();
   }
 

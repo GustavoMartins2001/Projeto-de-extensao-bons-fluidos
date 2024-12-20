@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-cadastro-evento-dialog',
@@ -12,28 +13,21 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
   templateUrl: './cadastro-evento-dialog.component.html',
   styleUrls: ['./cadastro-evento-dialog.component.css'],
 })
-export class CadastroEventoDialogComponent {
-  constructor(public dialogRef: MatDialogRef<CadastroEventoDialogComponent>) {}
+export class CadastroEventoDialogComponent implements OnInit{
+  constructor(@Inject(MAT_DIALOG_DATA) public eventData: any,
+  public dialogRef: MatDialogRef<CadastroEventoDialogComponent>,
+  public userService: UserService) {}
 
-  usersOutside = [
-    'Nome Sobrenome',
-    'Usuário 2',
-    'Usuário 3',
-    'Usuário 4',
-    'Usuário 5',
-    'Usuário 6',
-    'Usuário 7',
-    'Usuário 8',
-    'Usuário 9',
-    'Usuário 10',
-    'Usuário 11',
-    'Usuário 12',
-    'Usuário 13',
-  ];
+  usersOutside:any = []
   selectedUsersOutside: string[] = [];
-  usersInside: string[] = [];
+  usersInside: any = [];
   selectedUsersInside: string[] = [];
 
+
+  ngOnInit(): void {
+    this.listUsers();
+    console.log(this.eventData.id)
+  }
   closeDialog() {
     this.dialogRef.close();
   }
@@ -64,15 +58,22 @@ export class CadastroEventoDialogComponent {
     }
   }
 
+  async listUsers(){
+    if(!this.eventData.id){
+      this.usersOutside = await this.userService.list();
+    }
+    console.log(this.usersOutside)
+  }
+
   moveEvents() {
     //troca os usuarios selecionados, eventos fora vao pra dentro e vice-versa
     this.usersOutside = this.usersOutside.filter(
-      (u) => !this.selectedUsersOutside.includes(u)
+      (u: string) => !this.selectedUsersOutside.includes(u)
     );
     this.usersInside.push(...this.selectedUsersOutside);
 
     this.usersInside = this.usersInside.filter(
-      (u) => !this.selectedUsersInside.includes(u)
+      (u: string) => !this.selectedUsersInside.includes(u)
     );
     this.usersOutside.push(...this.selectedUsersInside);
 
@@ -80,4 +81,8 @@ export class CadastroEventoDialogComponent {
     this.selectedUsersOutside = [];
     this.selectedUsersInside = [];
   }
+
+    save() {
+      this.dialogRef.close({ data: this.usersInside });
+    }
 }

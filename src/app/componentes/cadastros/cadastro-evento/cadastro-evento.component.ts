@@ -36,6 +36,7 @@ export class CadastroEventoComponent implements OnInit {
 
   validation() {
     this.formCadastro = this.fb.group({
+      id:[''],
       data: ['', [Validators.required]],
       descricao: ['', [Validators.required]],
       participantes: [''],
@@ -45,7 +46,14 @@ export class CadastroEventoComponent implements OnInit {
   openDialog() {
     this.dialog.open(CadastroEventoDialogComponent, {
       width: '800px',
-    });
+      data: {
+        id: this.formCadastro.get('id')?.value
+      }
+    }).afterClosed()
+    .subscribe(response => {
+      this.formCadastro.get('participantes')?.setValue(response),
+      console.log(this.formCadastro.get('participantes')?.value);
+    });;
   }
 
   async onSubmit(): Promise<void> {

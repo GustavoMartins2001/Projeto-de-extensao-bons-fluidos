@@ -37,15 +37,30 @@ export class AuthInterceptor implements HttpInterceptor {
       req.url.indexOf('login') < 0;
 
     if (shouldAddAuthorizantion) {
+      console.log(shouldAddAuthorizantion)
       if (this.authService.token) {
-        //por algum motivo o token estava chegando com a palavra "token"(EX:"token [TOKEN_REAL]") na frente,
+        //por algum motivo o token estava chegando com a palavra "token" na frente(EX:"token [TOKEN_REAL]"),
         //o que fazia o auth falhar no backend. isso resolve o problema 
-        const teste:JsonToken = this.authService.token as unknown as JsonToken
+        const sessionToken:JsonToken = this.authService.token as unknown as JsonToken
 
         req = req.clone({
           headers: req.headers.set(
             AUTH_HEADER,
-            `Bearer ${teste.token}`
+            `Bearer ${sessionToken.token}`
+          ),
+        });
+      }
+
+    //Pega o token em cache pra nao ter que fazer login toda hora
+      else if(sessionStorage.getItem("sessionToken")){
+        var sessionToken: JsonToken = JSON.parse(sessionStorage.getItem("sessionToken") || '') as unknown as JsonToken
+
+        console.log(sessionToken.token);
+
+        req = req.clone({
+          headers: req.headers.set(
+            AUTH_HEADER,
+            `Bearer ${sessionToken.token}`
           ),
         });
       }
