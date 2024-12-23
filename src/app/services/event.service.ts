@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 export type EventRegisterParam = {
   description: string;
   date: Date;
-  user: Object;
+  participants: Object;
 };
 
 type JsonToken = {
@@ -27,13 +27,14 @@ export class EventService {
   async register({
     description,
       date,
-      user,
+      participants,
     }: EventRegisterParam): Promise<void> {
+
       this.$token = await lastValueFrom(
         this.http.post<string>(`${ENVIRONMENTS.API_URL}/api/event/create`, {
           description,
           date,
-          user,
+          participants,
         })
       );
     }

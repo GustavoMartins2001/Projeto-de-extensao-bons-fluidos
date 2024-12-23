@@ -30,8 +30,6 @@ export class CadastroEventoComponent implements OnInit {
 
   ngOnInit() {
     this.validation();
-
-    // this.dialog.closeAll();
   }
 
   validation() {
@@ -51,8 +49,7 @@ export class CadastroEventoComponent implements OnInit {
       }
     }).afterClosed()
     .subscribe(response => {
-      this.formCadastro.get('participantes')?.setValue(response),
-      console.log(this.formCadastro.get('participantes')?.value);
+      this.formCadastro.get('participantes')?.setValue(response.data)
     });;
   }
 
@@ -69,12 +66,12 @@ export class CadastroEventoComponent implements OnInit {
       await this.eventService.register({
         description: this.formCadastro.get('descricao')?.value,
         date: this.formCadastro.get('data')?.value,
-        user: this.formCadastro.get('participantes')?.value,
+        participants: this.formCadastro.get('participantes')?.value,
       });
 
       this.router.navigate(['/listagem/evento']);
 
-      alert('Usuário cadastrado com sucesso!');
+      alert('Evento cadastrado com sucesso!');
     } catch (error) {
       alert('Falha ao efetuar cadastro!');
     }
