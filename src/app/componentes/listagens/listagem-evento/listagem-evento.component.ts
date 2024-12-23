@@ -19,8 +19,7 @@ export class ListagemEventoComponent implements OnInit{
   showUsers = false;
 
   ngOnInit() {
-    console.log("123123")
-    this.listEvents();
+  this.listEvents();
   }
 
   edit(id: number) {
@@ -65,7 +64,6 @@ export class ListagemEventoComponent implements OnInit{
     else if(event.target.id == "events"){
       this.listEvents();
     }
-    console.log(this.list)
 
   }
 

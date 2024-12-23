@@ -39,6 +39,28 @@ export class EventService {
       );
     }
 
+    async update(id:Number, {
+      description,
+        date,
+        participants,
+      }: EventRegisterParam): Promise<void> {
+  
+        this.$token = await lastValueFrom(
+          this.http.put<string>(`${ENVIRONMENTS.API_URL}/api/event/update/${id}`, {
+            description,
+            date,
+            participants,
+          })
+        );  
+      }
+
+    async getEvent(id:Number){
+      var list = await lastValueFrom(
+        this.http.get(`${ENVIRONMENTS.API_URL}/api/event/getById`,{params: {id: id.toString()}})
+      );
+      return list;
+    }
+
   async list() {
       var list = await lastValueFrom(
         this.http.get(`${ENVIRONMENTS.API_URL}/api/event/list`)

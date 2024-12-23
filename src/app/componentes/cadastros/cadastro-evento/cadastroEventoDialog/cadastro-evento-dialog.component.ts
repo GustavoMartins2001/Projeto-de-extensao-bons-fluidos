@@ -59,10 +59,16 @@ export class CadastroEventoDialogComponent implements OnInit{
   }
 
   async listUsers(){
-    if(!this.eventData.id){
+    //se nao tiver usuarios, apenas carrega e deixa todos fora da lista (usado para o POST)
+    if(!this.eventData.idList){
       this.usersOutside = await this.userService.list();
     }
-    console.log(this.usersOutside)
+    else {
+      //se já tiver algum participante, faz a filtragem (usado para o PUT)
+      const list:any = await this.userService.list();
+      this.usersInside = list.filter((x: { id: number; }) => this.eventData.idList.includes(x.id)); 
+      this.usersOutside = list.filter((x: { id: number; }) => !this.eventData.idList.includes(x.id));
+    }
   }
 
   moveEvents() {
