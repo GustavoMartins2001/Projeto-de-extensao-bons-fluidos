@@ -23,13 +23,18 @@ export class ListagemEventoComponent implements OnInit{
   }
 
   edit(id: number) {
-    console.log('Editar item:', id);
+    this.router.navigate(['/cadastros/evento/' + id]);
   }
 
-  delete(id: number) {
-    this.list = this.list.filter((item: { id: number; }) => item.id !== id);
-    console.log('Item excluído:', id);
+  async delete(id: number) {
+    if(confirm("Tem certeza que deseja deletar o evento?")) {
+      await this.eventService.delete(id);
+      this.list = this.list.filter((item: { id: number; }) => item.id !== id);
+      // console.log('Item excluído:', id);
+    }
+    
   }
+
 
   toggleListClass(target:any){
     if(!target.classList.contains('active')){ //caso a listagem clicada nao esteja ativa, ativa ela e desativa a outra

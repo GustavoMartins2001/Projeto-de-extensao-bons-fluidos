@@ -54,11 +54,11 @@ export class EventService {
         );  
       }
 
-    async getEvent(id:Number){
-      var list = await lastValueFrom(
+    async getEvent(id:Number) {
+      var event = await lastValueFrom(
         this.http.get(`${ENVIRONMENTS.API_URL}/api/event/getById`,{params: {id: id.toString()}})
       );
-      return list;
+      return event;
     }
 
   async list() {
@@ -66,6 +66,14 @@ export class EventService {
         this.http.get(`${ENVIRONMENTS.API_URL}/api/event/list`)
       );
       return list;
+    }
+
+    async delete(id:Number) {
+
+      var response = await lastValueFrom(
+        this.http.delete(`${ENVIRONMENTS.API_URL}/api/event/delete/${id}`)
+      );
+      return response;
     }
 }
   
