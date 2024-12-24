@@ -26,5 +26,8 @@ export class AuthService {
         password,
       })
     );
+  console.log(this.token);
+  sessionStorage.setItem("sessionToken", JSON.stringify(this.token));
   }
+
 }

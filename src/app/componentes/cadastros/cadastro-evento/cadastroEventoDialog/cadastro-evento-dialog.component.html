@@ -19,7 +19,7 @@
           <h4>Fora do evento</h4>
           <ul class="wrapper">
             <li *ngFor="let user of usersOutside" (click)="selectOutsideEvent(user, $event)">
-              {{ user }}
+              {{ user.name }}
             </li>
           </ul>
         </div>
@@ -30,14 +30,14 @@
           <h4>Dentro do evento</h4>
           <ul class="wrapper">
             <li *ngFor="let user of usersInside" (click)="selectInsideEvent(user, $event)">
-              {{ user }}
+              {{ user.name }}
             </li>
           </ul>
         </div>
       </div>
     </div>
     <div class="dialog-footer">
-      <button class="save-button" mat-button mat-dialog-close>Salvar</button>
+      <button class="save-button" (click)="save()" mat-button mat-dialog-close>Salvar</button>
     </div>
   </div>
   

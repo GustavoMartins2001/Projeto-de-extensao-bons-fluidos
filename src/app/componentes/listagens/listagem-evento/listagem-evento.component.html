@@ -5,9 +5,9 @@
         <img class="logo" src="assets/logo.png" alt="Logo Bons Fluidos" />
       </div>
       <nav class="menu" #menu>
-        <a name="listagemDiv" class="menu-item active" (click)="loadList($event)">Eventos </a>
+        <a name="listagemDiv" id="events"  class="menu-item active" (click)="loadList($event)">Eventos </a>
 
-        <a name="listagemDiv" class="menu-item" (click)="loadList($event)">Usuários </a>
+        <a name="listagemDiv" id="users"  class="menu-item" (click)="loadList($event)">Usuários </a>
 
         <div class="menu-item" (click)="navigateTo('/cadastros/evento')">
           <a>Novo evento </a>
@@ -21,19 +21,37 @@
       </nav>
     </aside>
   
-    <main class="content">
+    <main class="content" *ngIf="showEvents">
       <div class="event-list">
-        <div class="event-item" *ngFor="let event of eventos">
+        <div class="event-item" *ngFor="let event of list">
           <div>
-              <span class="event-name">{{ event.nome }}</span>
+              <span class="event-name">{{ event.description }}</span>
           </div>
           <div>
-            <span class="event-date">Data: {{ event.data }}</span>
+            <span class="event-date">Data: {{ event.date | date:'dd/MM/yyyy'}}</span>
           </div>
           <div>
-            <button class="btn edit" (click)="editEvent(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
-            <button class="btn delete" (click)="deleteEvent(event.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
+            <button class="btn edit" (click)="edit(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
+            <button class="btn delete" (click)="delete(event.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
           </div>
+          
+        </div>
+      </div>
+    </main>
+
+    <main class="content" *ngIf="showUsers">
+      <div class="event-list">
+        <div class="event-item" *ngFor="let item of list">
+          <div>
+              <span class="event-name">{{ item.name }}</span>
+          </div>
+          <div>
+            <span class="event-date"> {{ item.email }}</span>
+          </div>
+          <!-- <div>
+            <button class="btn edit" (click)="edit(item.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
+            <button class="btn delete" (click)="clickMethod(item.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
+          </div> -->
           
         </div>
       </div>

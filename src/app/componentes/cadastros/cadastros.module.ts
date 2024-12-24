@@ -22,7 +22,15 @@ const routes: Routes = [
         component: CadastroUsuarioComponent,
       },
       {
+        path: 'usuario/:id',
+        component: CadastroUsuarioComponent,
+      },
+      {
         path: 'evento',
+        component: CadastroEventoComponent,
+      },
+      {
+        path: 'evento/:id',
         component: CadastroEventoComponent,
       },
     ],

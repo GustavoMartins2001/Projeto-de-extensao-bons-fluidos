@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ENVIRONMENTS } from '../constants/environments';
+import { HttpHeaders } from '@angular/common/http';
 
 export type UserRegisterParam = {
   name: string;
@@ -10,6 +11,10 @@ export type UserRegisterParam = {
   phone: string;
   apoiador: boolean;
 };
+
+type JsonToken = {
+  token: string;
+}
 
 @Injectable({ providedIn: 'root', deps: [HttpClient] })
 export class UserService {
@@ -38,4 +43,13 @@ export class UserService {
       })
     );
   }
+
+  async list() {
+    var list = await lastValueFrom(
+      this.http.get(`${ENVIRONMENTS.API_URL}/api/user/list`)
+    );
+    return list;
+  }
 }
+  
+

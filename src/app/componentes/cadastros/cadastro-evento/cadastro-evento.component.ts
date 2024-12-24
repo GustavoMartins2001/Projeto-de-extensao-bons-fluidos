@@ -6,10 +6,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CadastroEventoDialogComponent } from './cadastroEventoDialog/cadastro-evento-dialog.component';
+import { EventService } from '../../../services/event.service';
+import moment from 'moment'
 
 @Component({
   selector: 'app-cadastro-evento',
@@ -22,45 +24,90 @@ export class CadastroEventoComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private eventService: EventService
   ) {}
 
   ngOnInit() {
     this.validation();
-
-    // this.dialog.closeAll();
+    
+    this.route.params.subscribe(res => { //get id da rota
+      if (!isNaN(Number(res['id']))) {
+        this.getEvent(Number(res['id']))
+      }
+    });
   }
 
   validation() {
     this.formCadastro = this.fb.group({
-      nome: ['', [Validators.required]],
+      id:[''],
       data: ['', [Validators.required]],
-      descricao: [''],
+      descricao: ['', [Validators.required]],
       participantes: [''],
     });
   }
 
-  openDialog() {
-    this.dialog.open(CadastroEventoDialogComponent, {
-      width: '800px',
-    });
+  async getEvent(id:Number){
+    var event = await this.eventService.getEvent(id);
+    this.patchValue(event)
   }
 
-  submit() {
-    console.log(this.formCadastro);
-    this.router.navigateByUrl('listagem/evento');
-    // if (this.user.username && this.user.password) {
-    //   console.log('Form submitted', this.user);
+  patchValue(event: any){
+    console.log(event)
+    this.formCadastro.patchValue({
+      id: event.id,
+      data: moment(event.date).format('YYYY-MM-DD'),
+      descricao: event.description,
+      participantes: event.Users,
+    })
+  }
 
-    //   //logica de validação
-    //   //
-    //   //
+  openDialog() {
+    console.log(this.formCadastro.get('participantes')?.value)
+    const idList = (this.formCadastro.get('participantes')?.value).map((x: { id: any; }) => x.id);
 
-    //   this.router.navigate(['/listagem/evento']);
+    this.dialog.open(CadastroEventoDialogComponent, {
+      width: '800px',
+      data: {
+        idList: idList
+      }
+    }).afterClosed()
+    .subscribe(response => {
+      this.formCadastro.get('participantes')?.setValue(response.data)
+    });;
+  }
 
-    // } else {
-    //   console.error('Form is invalid');
-    // }
+  async onSubmit(): Promise<void> {
+    console.log(this.formCadastro.getRawValue());
+
+    if (this.formCadastro.invalid) {
+      this.formCadastro.markAllAsTouched();
+      alert('É necessário preencher todos os campos para prosseguir!');
+      return;
+    }
+
+    try {
+      if(this.formCadastro.get('id')?.value > 0){
+        await this.eventService.update( this.formCadastro.get('id')?.value,
+        {
+          description: this.formCadastro.get('descricao')?.value,
+          date: this.formCadastro.get('data')?.value,
+          participants: this.formCadastro.get('participantes')?.value,
+        });
+      }
+      await this.eventService.register({
+        description: this.formCadastro.get('descricao')?.value,
+        date: this.formCadastro.get('data')?.value,
+        participants: this.formCadastro.get('participantes')?.value,
+      });
+
+      this.router.navigate(['/listagem/evento']);
+
+      alert('Evento cadastrado com sucesso!');
+    } catch (error) {
+      alert('Falha ao efetuar cadastro!');
+    }
   }
 }

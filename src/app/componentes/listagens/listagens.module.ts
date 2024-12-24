@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListagemEventoComponent } from './listagem-evento/listagem-evento.component';
-import { ListagemUsuarioComponent } from './listagem-usuario/listagem-usuario.component';
 import { ListagensComponent } from './listagens.component';
 
 const routes: Routes = [
@@ -18,10 +17,6 @@ const routes: Routes = [
             {
                 path: 'evento',
                 component: ListagemEventoComponent,
-            },
-            {
-                path: 'usuario',
-                component: ListagemUsuarioComponent,
             },
         ],
     },
