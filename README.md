@@ -1,59 +1,32 @@
-# ProjetoBonsFluidos
+# Projeto Bons Fluidos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.1.
+Projeto feito para o trabalho final da disciplina AS65A - Certificadora de competencia Identitária.
 
-## Development server
+O projeto é composto por dois servidores, um rodando o framework para a renderização da página(frontEnd) e um servidor para rodar a API responsável
+pela parte lógica de todo o projeto(backend).
 
-To start a local development server, run:
+O servidor backend tem seu proprio repositório com sua próprias instruções para rodar o projeto, que pode ser acessado pelo seguinte link:
+https://github.com/GustavoMartins2001/Projeto-de-extensao-bons-fluidos-backend?tab=readme-ov-file
+
+## Ferramentas necessárias para rodar o projeto
+
+Para rodar o servidor frontEnd, é necessário ter NodeJs e npm instalados.
+Com essas ferramentas instaladas, clone o repositório na pasta desejada OU 
+faça o download do projeto pelo github e o extraia na pasta desejada. Então utilize o comando
+
+```bash
+npm install
+```
+Assim todas as demais dependencias serão instaladas automaticamente.
+
+
+## Servidor de desenvolvimento
+ 
+Para iniciar um servidor de desenvolvimento local, execute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Depois que o servidor estiver em execução, abra seu navegador e acesse http://localhost:4200/. A aplicação será recarregada automaticamente sempre que você modificar qualquer um dos arquivos de origem.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
