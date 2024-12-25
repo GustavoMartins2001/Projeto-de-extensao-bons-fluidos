@@ -26,6 +26,9 @@ npm install
 ```
 Assim todas as demais dependencias serão instaladas automaticamente.
 
+Após isso, dentro do projeto navegue até app/constants/enviroments.ts
+Nesse arquivo, defina as constantes API_URL e JWT de acordo com o que foi criado no backend(seguir as instruções do outro repositório).
+Esse passo é necessário para permitir a autenticação ao fazer requisições para a API.
 
 ## Servidor de desenvolvimento
  
