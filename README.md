@@ -15,7 +15,7 @@ expressjs para rodar o servidor backend.
 
 
 
-## Pré requisitos para rodar o servidor frontEnd
+## Pré requisitos para rodar o servidor FrontEnd
 
 Para rodar o servidor frontEnd, é necessário ter NodeJs e npm instalados.
 Com essas ferramentas instaladas, clone o repositório na pasta desejada OU 
@@ -30,7 +30,7 @@ Após isso, dentro do projeto navegue até app/constants/enviroments.ts
 Nesse arquivo, defina as constantes API_URL e JWT de acordo com o que foi criado no backend(seguir as instruções do outro repositório).
 Esse passo é necessário para permitir a autenticação ao fazer requisições para a API.
 
-## Servidor de desenvolvimento
+## Servidor FrontEnd
  
 Para iniciar um servidor de desenvolvimento local, execute:
 
@@ -39,4 +39,6 @@ ng serve
 ```
 
 Depois que o servidor estiver em execução, abra seu navegador e acesse http://localhost:4200/. 
+
+Lembrando que é necessários que os dois servidores estejam rodando para o funcionamento correto do projeto.
 
