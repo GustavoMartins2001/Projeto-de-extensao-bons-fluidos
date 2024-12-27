@@ -20,6 +20,7 @@ export class ListagemEventoComponent implements OnInit{
 
   ngOnInit() {
   this.listEvents();
+  this.getPermission();
   }
 
   edit(id: number) {
@@ -30,12 +31,8 @@ export class ListagemEventoComponent implements OnInit{
     if(confirm("Tem certeza que deseja deletar o evento?")) {
       await this.eventService.delete(id);
       this.list = this.list.filter((item: { id: number; }) => item.id !== id);
-      // console.log('Item excluído:', id);
     }
-    
   }
-
-
   toggleListClass(target:any){
     if(!target.classList.contains('active')){ //caso a listagem clicada nao esteja ativa, ativa ela e desativa a outra
       const listagensButtons = document.getElementsByName("listagemDiv")
@@ -47,10 +44,17 @@ export class ListagemEventoComponent implements OnInit{
     
   }
 
+  getPermission(){
+      var token =  JSON.parse(sessionStorage.getItem("sessionToken") || "");
+      console.log(token);
+  }
+
+
   async listUsers(){
     this.list = await this.userService.list();
       this.showUsers = true;
       this.showEvents = false;
+      console.log(this.list);
   }
 
   async listEvents(){

@@ -61,8 +61,8 @@ export class CadastroUsuarioComponent implements OnInit {
         name: this.formCadastro.get('nome')?.value,
         email: this.formCadastro.get('email')?.value,
         password: this.formCadastro.get('senha')?.value,
-        phone: this.formCadastro.get('telefone')?.value,
-        apoiador: this.formCadastro.get('apoiador')?.value,
+        contact: this.formCadastro.get('telefone')?.value,
+        supporter: this.formCadastro.get('apoiador')?.value,
       });
 
       this.router.navigate(['/login']);

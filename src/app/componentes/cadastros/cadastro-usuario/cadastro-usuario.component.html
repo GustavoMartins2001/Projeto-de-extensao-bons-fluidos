@@ -30,16 +30,14 @@
         required
       />
 
-      <label> <input type="checkbox" /> Será apoiador? </label>
-
-      <div class="button-container">
-        <button class="cancel-button" (click)="onCancel()">Cancelar</button>
-        <button type="submit" (click)="onSubmit()">
-          <!-- [disabled]="formCadastro.invalid"
-          [class.empty]="formCadastro.invalid" -->
-          Salvar
-        </button>
+      <div style="display:flex">
+        <input  formControlName="apoiador" type="checkbox" /> 
+        <label for="supporter">Será apoiador? </label>
       </div>
     </form>
+    <div class="button-container">
+      <button class="cancel-button">Cancelar</button>
+      <button type="submit" (click)="onSubmit()" [disabled] = "formCadastro.invalid" [class.empty]="formCadastro.invalid">Salvar</button>
+      </div>
   </div>
 </div>

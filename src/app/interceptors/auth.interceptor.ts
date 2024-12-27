@@ -55,8 +55,6 @@ export class AuthInterceptor implements HttpInterceptor {
       else if(sessionStorage.getItem("sessionToken")){
         var sessionToken: JsonToken = JSON.parse(sessionStorage.getItem("sessionToken") || '') as unknown as JsonToken
 
-        console.log(sessionToken.token);
-
         req = req.clone({
           headers: req.headers.set(
             AUTH_HEADER,
