@@ -59,8 +59,6 @@ apenas marque a opção apoiador e lembre-se do email e senha que cadastrou para
 Se o cadastro for completado com sucesso, você será redirecionado para a página de login. Insira as informações cadastradas e clique no botão login.
 
 Com isso você terá acesso a listagem e criação de eventos e usuários. Caso você tenha marcado a opção "apoiador" no registro, você também poderá editar os eventos.
-Inicialmente o objetivo era usar um sistema de permissões para esconder a opção de cadastro de eventos para usuarios comuns, deixando essa funcionalidade exclusiva
-para apoiadores. Esse sistema foi implementado no backend, para autenticação, porém não conseguimos renderizar as páginas dinamicamente no frontEnd utilizando essas permissões.
 
 Você pode criar vários eventos e usuarios, e todos eles aparecerão nas listagens.
 
