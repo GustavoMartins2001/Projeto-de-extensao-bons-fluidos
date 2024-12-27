@@ -22,13 +22,25 @@
     </aside>
   
     <main class="content" *ngIf="showEvents">
-      <div class="event-list">
-        <div class="event-item" *ngFor="let event of list">
+      
+      <div class="list">
+        <div class="div-header">
           <div>
+            <span class="event-name"><strong>Evento</strong></span>
+        </div>
+        <div>
+          <span class="event-tel"><strong>Data</strong></span>
+      </div>
+        <div>
+          <span class="event-date"><strong>Ações</strong></span>
+        </div>
+        </div>
+        <div class="div-item" *ngFor="let event of list">
+          <div class="div-item-div">
               <span class="event-name">{{ event.description }}</span>
           </div>
-          <div>
-            <span class="event-date">Data: {{ event.date | date:'dd/MM/yyyy'}}</span>
+          <div class="div-item-div">
+            <span class="event-date">{{ event.date | date:'dd/MM/yyyy'}}</span>
           </div>
           <div>
             <button class="btn edit" (click)="edit(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
@@ -40,18 +52,28 @@
     </main>
 
     <main class="content" *ngIf="showUsers">
-      <div class="event-list">
-        <div class="event-item" *ngFor="let item of list">
+      <div class="list">
+        <div class="div-header">
+          <div>
+            <span class="event-name"><strong>Usuário</strong></span>
+        </div>
+        <div>
+          <span class="event-tel"><strong>Telefone</strong></span>
+      </div>
+        <div>
+          <span class="event-date"><strong>Email</strong></span>
+        </div>
+        </div>
+        <div class="div-item" *ngFor="let item of list">
           <div>
               <span class="event-name">{{ item.name }}</span>
           </div>
           <div>
+            <span class="event-tel">{{ item.contact }}</span>
+        </div>
+          <div>
             <span class="event-date"> {{ item.email }}</span>
           </div>
-          <!-- <div>
-            <button class="btn edit" (click)="edit(item.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
-            <button class="btn delete" (click)="clickMethod(item.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
-          </div> -->
           
         </div>
       </div>

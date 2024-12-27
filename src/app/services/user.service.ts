@@ -8,8 +8,8 @@ export type UserRegisterParam = {
   name: string;
   email: string;
   password: string;
-  phone: string;
-  apoiador: boolean;
+  contact: string;
+  supporter: boolean;
 };
 
 type JsonToken = {
@@ -29,17 +29,17 @@ export class UserService {
   async register({
     name,
     email,
-    phone,
+    contact,
     password,
-    apoiador,
+    supporter,
   }: UserRegisterParam): Promise<void> {
     this.$token = await lastValueFrom(
       this.http.post<string>(`${ENVIRONMENTS.API_URL}/api/user/register`, {
         name,
         email,
-        phone,
+        contact,
         password,
-        apoiador,
+        supporter,
       })
     );
   }
