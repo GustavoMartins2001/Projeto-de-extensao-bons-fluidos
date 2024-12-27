@@ -51,6 +51,7 @@ participantes desses eventos e manter informações publicas dos participantes -
 
 Após iniciados ambos os servidores, abra seu navegador e acesse http://localhost:4200/. Você será automaticamente redirecionado para a página de login.
 Clique na opção "Cadastre-se", logo abaixo o botao de login.
+
 ![image](https://github.com/user-attachments/assets/bc3a3e26-cd8c-4489-8500-c2704def0998)
 
 Na página de registro, preencha todos os campos. Não é necessario utilizar suas informações reais,
