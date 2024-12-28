@@ -7,14 +7,14 @@
       <nav class="menu" #menu>
         <a name="listagemDiv" id="events"  class="menu-item active" (click)="loadList($event)">Eventos </a>
 
-        <a name="listagemDiv" id="users"  class="menu-item" (click)="loadList($event)">Usuários </a>
+        <a name="listagemDiv" id="users"  class="menu-item" (click)="loadList($event)" *ngIf="supporter">Usuários </a>
 
-        <div class="menu-item" (click)="navigateTo('/cadastros/evento')">
+        <div class="menu-item" (click)="navigateTo('/cadastros/evento')" *ngIf="supporter">
           <a>Novo evento </a>
           <img src="assets/plusIconGreen.png" alt="Logo Bons Fluidos" class="plus-icon" />
         </div>
 
-        <div #usuarioList class="menu-item" (click)="navigateTo('/cadastros/usuario')">
+        <div #usuarioList class="menu-item" (click)="navigateTo('/cadastros/usuario')" *ngIf="supporter">
           <a >Novo usuário </a>
           <img src="assets/plusIconGreen.png" alt="Logo Bons Fluidos" class="plus-icon" />
         </div>
@@ -32,7 +32,7 @@
           <span class="event-tel"><strong>Data</strong></span>
       </div>
         <div>
-          <span class="event-date"><strong>Ações</strong></span>
+          <span class="event-date" *ngIf="supporter"><strong>Ações</strong></span>
         </div>
         </div>
         <div class="div-item" *ngFor="let event of list">
@@ -43,8 +43,8 @@
             <span class="event-date">{{ event.date | date:'dd/MM/yyyy'}}</span>
           </div>
           <div>
-            <button class="btn edit" (click)="edit(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" /></button>
-            <button class="btn delete" (click)="delete(event.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" /></button>
+            <button class="btn edit" (click)="edit(event.id)"><img style="width: 80%;" src="assets/edit.png" alt="Logo Bons Fluidos" *ngIf="supporter"/></button>
+            <button class="btn delete" (click)="delete(event.id)"><img style="width: 80%;" src="assets/delete.png" alt="Logo Bons Fluidos" *ngIf="supporter"/></button>
           </div>
           
         </div>
@@ -69,7 +69,7 @@
               <span class="event-name">{{ item.name }}</span>
           </div>
           <div>
-            <span class="event-tel">{{ item.contact }}</span>
+            <span class="event-tel" >{{ item.contact | phoneMask}}</span>
         </div>
           <div>
             <span class="event-date"> {{ item.email }}</span>

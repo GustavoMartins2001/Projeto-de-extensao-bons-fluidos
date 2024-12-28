@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListagemEventoComponent } from './listagem-evento/listagem-evento.component';
 import { ListagensComponent } from './listagens.component';
+import { PhoneMaskPipe } from '../../../../public/pipes/phone-mask.pipe';
 
 const routes: Routes = [
     {
@@ -26,6 +27,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        PhoneMaskPipe,
     ],
     exports: [RouterModule],
 })
