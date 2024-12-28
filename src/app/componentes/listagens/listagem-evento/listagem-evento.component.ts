@@ -3,20 +3,25 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { EventService } from '../../../services/event.service';
+import { jwtDecode } from "jwt-decode";
+import { PhoneMaskPipe } from '../../../../../public/pipes/phone-mask.pipe';
 
 @Component({
   selector: 'app-listagem-evento',
-  imports: [CommonModule],
+  imports: [CommonModule, PhoneMaskPipe],
   templateUrl: './listagem-evento.component.html',
   styleUrl: './listagem-evento.component.css'
 })
 export class ListagemEventoComponent implements OnInit{
 
-  constructor(private router: Router, private userService: UserService, private eventService: EventService) {}
+  constructor(private router: Router,
+      private userService: UserService,
+      private eventService: EventService) {}
 
   list:any = []
   showEvents = true;
   showUsers = false;
+  supporter = false;
 
   ngOnInit() {
   this.listEvents();
@@ -45,8 +50,9 @@ export class ListagemEventoComponent implements OnInit{
   }
 
   getPermission(){
-      var token =  JSON.parse(sessionStorage.getItem("sessionToken") || "");
-      console.log(token);
+      var decoded:any = jwtDecode(sessionStorage.getItem("sessionToken") || "");
+      if(decoded.supporter || decoded.super)
+        this.supporter = true;
   }
 
 

@@ -61,34 +61,37 @@
   .div-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-top: 10px;
     align-items: center;
     border-bottom: 1px solid #00000014;
   }
 
-  .div-header{
+  .div-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    border-bottom: 1px solid #00000014;
+    align-items: center;
+    padding: 10px;
     background-color: #89C39D;
+    border-bottom: 1px solid #00000014;
     font-size: 13px;
+}
 
-  }
 
-  /* aplica tamanho minimo a todos menos ao ultimo, que são os icones, assim deixando eles sempre à direita */
-  .div-item > div:not(:last-child), .div-header > div:not(:last-child){
-    min-width: 25%;
-  }
-  .event-name {
-    margin-left: 10px;
-  }
+  .div-header > div, .div-item > div {
+    flex: 1;
+    text-align: left;
+}
+/* Joga a ultima coluna pra direita */
+.div-header > div:last-child, .div-item > div:last-child {
+    text-align: right;
+}
+.event-name {
+  padding-left: 10px;
+}
 
-  .event-date{
-    margin-right: 10px;
-  }
+.event-date {
+  padding-right: 10px;
+}
 
   .plus-icon{
     margin-top: 2px;
