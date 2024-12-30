@@ -65,9 +65,9 @@ export class CadastroEventoComponent implements OnInit {
   }
 
   openDialog() {
-    console.log(this.formCadastro.get('participantes')?.value)
-    const idList = (this.formCadastro.get('participantes')?.value).map((x: { id: any; }) => x.id);
-
+    const idList = this.formCadastro.get('participantes')?.value ?
+     (this.formCadastro.get('participantes')?.value).map((x: { id: any; }) => x.id) 
+     : null; //caso nao tenha nenhum participante envia null para a lista de ids
     this.dialog.open(CadastroEventoDialogComponent, {
       width: '800px',
       data: {
